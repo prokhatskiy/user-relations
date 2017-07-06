@@ -37,7 +37,13 @@ export default {
                 request.set('Accept', 'application/json');
             }
 
-            request.end(err => reject(err));
+            request.end((err, { body } = {}) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(body);
+                }
+            });
         });
     }
 }

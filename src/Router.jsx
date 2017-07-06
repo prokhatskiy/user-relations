@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import MainLayout from './layout/MainLayout';
-
-import { UserPage } from './routes/UserPage';
-import { MainPage } from './routes/MainPage';
 import { Message } from './shared';
+import MainLayout from './layout/MainLayout';
+import UserPage from './routes/UserPage';
+import MainPage from './routes/MainPage';
+
 
 export const USER_ROUTE = 'user';
 

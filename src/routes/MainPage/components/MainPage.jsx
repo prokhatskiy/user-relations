@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import UserList from './UserList';
 import TopUsers from './TopUsers';
 
 import './MainPage.styl';
 
-const MainPage = () => (
+const MainPage = ({ fetchUsers, users }) => (
     <section className="main-page">
-        <UserList />
+        <UserList
+            items={users}
+            loadMore={fetchUsers}
+        />
 
         <aside className="main-page__sidebar">
             <TopUsers />
@@ -15,4 +19,10 @@ const MainPage = () => (
     </section>
 );
 
+MainPage.propTypes = {
+    fetchUsers: PropTypes.func,
+    users: PropTypes.array,
+};
+
 export default MainPage;
+
