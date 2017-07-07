@@ -9,12 +9,12 @@ import './MainPage.styl';
 const MainPage = ({ fetchUsers, users }) => (
     <section className="main-page">
         <UserList
-            items={users}
-            loadMore={fetchUsers}
+          items={users}
+          loadMore={fetchUsers}
         />
 
         <aside className="main-page__sidebar">
-            <TopUsers />
+            <TopUsers items={users} />
         </aside>
     </section>
 );

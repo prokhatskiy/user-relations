@@ -3,6 +3,10 @@ import superagent from 'superagent';
 export default {
     origin: 'https://randomuser.me/api/',
 
+    defaultParams: {
+        inc: 'id,name,email,picture,login,phone'
+    },
+
     get: function (...args) {
         return this.doMethod('get', ...args);
     },
@@ -22,12 +26,13 @@ export default {
     doMethod: function (method, params) {
         return new Promise((resolve, reject) => {
             const request = superagent[method](this.origin);
+            const extendedParams = { ...params, ...this.defaultParams };
 
             if (params) {
                 if (method === 'get') {
-                    request.query(params);
+                    request.query(extendedParams);
                 } else {
-                    request.send(params);
+                    request.send(extendedParams);
                 }
             }
 
