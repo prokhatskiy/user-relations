@@ -2,7 +2,7 @@ import React, { Component }  from 'react';
 import PropTypes from 'prop-types';
 
 import Button from './Button';
-import Modal from './Modal';
+import LoginModal from './LoginModal';
 
 import './UserBar.styl';
 
@@ -14,21 +14,17 @@ export default class UserBar extends Component {
     handleOpenModal = () => {
         this.setState({
             isModalOpen: true
-        })
+        });
     };
 
     handleCloseModal = () => {
         this.setState({
             isModalOpen: false
-        })
+        });
     };
 
-    handleLogOut = () => {
-
-    };
-
-    renderLogOut() {
-        const { name: { first, last } } =  this.props;
+    renderLogOutBtn() {
+        const { name: { first, last } } = this.props.user;
 
         return (
             <div className="user-bar__username">
@@ -41,19 +37,11 @@ export default class UserBar extends Component {
         );
     }
 
-    renderSignIn() {
+    renderLogInBtn() {
         return (
             <Button modifiers={['light']} onClick={this.handleOpenModal}>
                 Log In
             </Button>
-        );
-    }
-
-    renderModal() {
-        return (
-            <Modal onClose={this.handleCloseModal}>
-                Hello World
-            </Modal>
         );
     }
 
@@ -64,16 +52,20 @@ export default class UserBar extends Component {
             <div className="user-bar">
                 {
                     user
-                        ? this.renderLogOut()
-                        : this.renderSignIn()
+                        ? this.renderLogOutBtn()
+                        : this.renderLogInBtn()
 
                 }
 
                 {
-                    this.state.isModalOpen && this.renderModal()
+                    this.state.isModalOpen &&
+                    <LoginModal
+                      onClose={this.handleCloseModal}
+                      onSubmit={(values) => { console.log(values); }}
+                    />
                 }
             </div>
-        )
+        );
     }
 }
 

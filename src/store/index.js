@@ -6,7 +6,7 @@ function reduxStore() {
     const store = createStore(
         rootReducer,
         window.devToolsExtension && window.devToolsExtension(),
-        applyMiddleware(thunkMiddleware)
+        applyMiddleware(thunkMiddleware),
     );
 
     if (module.hot) {

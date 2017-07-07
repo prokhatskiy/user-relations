@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Message from '../../../shared/Message'
+import Message from '../../../shared/components/Message'
 
 import CommentList from './CommentList';
 import CommentForm from './CommentForm';

@@ -24,4 +24,8 @@ Button.propTypes = {
     className: PropTypes.string
 };
 
+Button.defaultProps = {
+    modifiers: []
+};
+
 export default Button;
