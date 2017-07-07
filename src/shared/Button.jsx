@@ -4,10 +4,10 @@ import cn from 'classnames';
 
 import './Button.styl';
 
-const Button = ({ children, submit, modifiers, ...props }) => (
+const Button = ({ children, submit, modifiers, className, ...props }) => (
     <button
       type={submit ? 'submit': 'button'}
-      className={cn('btn', modifiers.map(mod => `btn_${mod}`))}
+      className={cn('btn', className, modifiers.map(mod => `btn_${mod}`))}
       {...props}
     >
         {children}
@@ -20,7 +20,8 @@ Button.propTypes = {
         PropTypes.arrayOf(PropTypes.node)
     ]),
     modifiers: PropTypes.arrayOf(PropTypes.string),
-    submit: PropTypes.bool
+    submit: PropTypes.bool,
+    className: PropTypes.string
 };
 
 export default Button;
