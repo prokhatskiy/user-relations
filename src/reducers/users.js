@@ -27,7 +27,8 @@ export default function reducer(state = initialState, action = {}) {
                     ...state.items,
                     ...items
                 },
-                itemsOrder: [...state.itemsOrder, ...itemsOrder]
+                itemsOrder: [...state.itemsOrder, ...itemsOrder],
+                page: action.payload.page
             };
 
         default:

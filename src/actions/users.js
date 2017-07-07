@@ -9,7 +9,8 @@ export function fetchUsers(page = 0, limit = FETCH_LIMIT) {
             dispatch({
                 type: USERS_FETCHED,
                 payload: {
-                    items: res.results
+                    items: res.results,
+                    page: res.info.page
                 }
             })
         ))

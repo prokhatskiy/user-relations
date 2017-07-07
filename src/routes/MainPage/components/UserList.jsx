@@ -4,8 +4,6 @@ import InfiniteScroll from 'react-infinite-scroller';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { FETCH_LIMIT } from '../../../actions/users'
-
 import { USER_ROUTE } from '../../../Router';
 
 import './UserList.styl';
@@ -23,17 +21,19 @@ export const USER_SHAPE = PropTypes.shape({
 
 export default class UserList extends Component{
     componentDidMount() {
-        this.props.loadMore();
+        if (this.props.initialPage === 0) {
+            this.props.loadMore();
+        }
     }
 
     render() {
-        const { items, loadMore } = this.props;
+        const { items, loadMore, initialPage } = this.props;
 
         return (
             <InfiniteScroll
-                pageStart={parseInt(items/FETCH_LIMIT, 10)}
-                loadMore={loadMore}
-                hasMore
+              pageStart={initialPage}
+              loadMore={loadMore}
+              hasMore
             >
                 <ul className="user-list">
                     {
@@ -64,6 +64,7 @@ export default class UserList extends Component{
 
 UserList.propTypes = {
     items: PropTypes.arrayOf(USER_SHAPE),
+    initialPage: PropTypes.number,
     loadMore: PropTypes.func
 };
 
