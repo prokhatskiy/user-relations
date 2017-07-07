@@ -1,1 +1,1 @@
-export default from './components/UserPage';
+export default from './containers/UserPage';
