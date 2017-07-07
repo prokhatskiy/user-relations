@@ -8,7 +8,7 @@ const initialState = {
 
 export default function reducer(state = initialState, action = {}) {
     switch (action.type) {
-    case USERS_FETCHED:
+    case USERS_FETCHED: {
         const itemsOrder = [];
         const items = {};
 
@@ -37,7 +37,7 @@ export default function reducer(state = initialState, action = {}) {
             itemsOrder: [...state.itemsOrder, ...itemsOrder],
             page: action.payload.page
         };
-
+    }
     default:
         return state;
     }

@@ -7,23 +7,23 @@ export default {
         inc: 'id,name,email,picture,login,phone'
     },
 
-    get: function (...args) {
+    get: function get(...args) {
         return this.doMethod('get', ...args);
     },
 
-    post: function (...args) {
+    post: function post(...args) {
         return this.doMethod('post', ...args);
     },
 
-    put: function (...args) {
+    put: function put(...args) {
         return this.doMethod('put', ...args);
     },
 
-    delete: function (...args) {
+    delete: function del(...args) {
         return this.doMethod('delete', ...args);
     },
 
-    doMethod: function (method, params) {
+    doMethod: function doMethod(method, params) {
         return new Promise((resolve, reject) => {
             const request = superagent[method](this.origin);
             const extendedParams = { ...params, ...this.defaultParams };
@@ -49,5 +49,5 @@ export default {
             });
         });
     }
-}
+};
 

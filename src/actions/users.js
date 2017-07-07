@@ -1,4 +1,4 @@
-import usersApi from  '../utils/usersApi';
+import usersApi from '../utils/usersApi';
 
 export const USERS_FETCHED = 'Users/USERS_FETCHED';
 export const FETCH_LIMIT = 200;

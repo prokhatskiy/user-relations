@@ -8,7 +8,7 @@ const initialState = {
 
 export default function reducer(state = initialState, action = {}) {
     switch (action.type) {
-    case ADD_COMMENT:
+    case ADD_COMMENT: {
         const { authorId, targetId, body } = action.payload;
         const newComment = generateCommentEntry(authorId, targetId, body);
 
@@ -20,13 +20,12 @@ export default function reducer(state = initialState, action = {}) {
             },
             recipients: {
                 ...state.recipients,
-                [targetId]:
-                    state.recipients[targetId]
-                        ? [].concat(state.recipients[targetId], [newComment.id])
-                        : [newComment.id]
+                [targetId]: state.recipients[targetId]
+                    ? [].concat(state.recipients[targetId], [newComment.id])
+                    : [newComment.id]
             }
         };
-
+    }
     default:
         return state;
     }
