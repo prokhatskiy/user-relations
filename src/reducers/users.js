@@ -1,3 +1,4 @@
+import md5 from 'md5';
 import { USERS_FETCHED } from '../actions/users';
 
 const initialState = {
@@ -12,7 +13,13 @@ export default function reducer(state = initialState, action = {}) {
         const items = {};
 
         action.payload.items.forEach((item) => {
-            const computedId = `${item.id.name}_${item.id.value}_${item.name.first}_${item.name.last}`;
+            const computedId = md5(
+                item.id.name +
+                item.id.value +
+                item.name.first +
+                item.name.last +
+                new Date().getTime()
+            );
 
             itemsOrder.push(computedId);
             items[computedId] = {

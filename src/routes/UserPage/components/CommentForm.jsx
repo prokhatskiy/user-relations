@@ -1,49 +1,64 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Field, reduxForm } from 'redux-form';
+import { Button, Input } from '../../../shared';
 
 import './CommentForm.styl';
 
-export default class CommentForm extends Component {
+class CommentForm extends Component {
     renderMessage() {
         return (
             <div className="comment-form__message">
                 For leaving comment you should be registered user.
             </div>
-        )
+        );
     }
+
     renderForm() {
         return (
-            <form onSubmit={() => {}}>
+            <form onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
                 <label htmlFor="comment-form">
-                    Leave your comment:
-                    <textarea name="comment-form" className="comment-form__message" />
+                    <Field
+                      name="comment"
+                      component={Input}
+                      placeholder="Leave your comment here"
+                      className="comment-form__message"
+                      textarea
+                      required
+                    />
 
-                    <button className="btn btn_action comment-form__submit-btn">
+                    <Button
+                      submit
+                      modifiers={['light']}
+                      className="comment-form__submit-btn"
+                    >
                         Submit
-                    </button>
+                    </Button>
                 </label>
             </form>
-        )
+        );
     }
     render() {
-        const { auth } = this.props;
+        const { showForm } = this.props;
 
         return (
             <div className="comment-form">
                 {
-                    auth && auth.id
+                    showForm
                         ? this.renderForm()
                         : this.renderMessage()
                 }
             </div>
-        )
+        );
     }
 }
 
 CommentForm.propTypes = {
-    postComment: PropTypes.func,
-    userId: PropTypes.string,
-    auth: PropTypes.shape({
-        id: PropTypes.string
-    })
+    onSubmit: PropTypes.func,
+    handleSubmit: PropTypes.func,
+    showForm: PropTypes.bool
 };
+
+export default reduxForm({
+    form: 'comment-form'
+})(CommentForm);

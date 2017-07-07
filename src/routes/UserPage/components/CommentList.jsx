@@ -5,13 +5,10 @@ import './CommentList.styl';
 const CommentList = ({ items }) => (
     <ul className="comments">
         {
-            items.map((comment) => (
-                <li className="comments__item">
-                    <div className="comments__author">
-                        {comment.author}
-                    </div>
+            items.map(comment => (
+                <li className="comments__item" key={comment.id}>
                     <div className="comments__item-body">
-                        {comment.text}
+                        {comment.body}
                     </div>
                 </li>
             ))
