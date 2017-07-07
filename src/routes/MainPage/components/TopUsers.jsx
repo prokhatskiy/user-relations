@@ -30,8 +30,6 @@ export default class TopUsers extends Component {
     render() {
         const { pairs } = this.state;
 
-        console.log(pairs);
-
         return (
             <ul className="top-users">
                 {

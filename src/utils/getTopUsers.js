@@ -15,7 +15,5 @@ export default function getTopUsers(userList = [], qty) {
         })
     }
 
-    console.log(results, 2222);
-
     return results;
 }
