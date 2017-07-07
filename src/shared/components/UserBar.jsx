@@ -1,5 +1,6 @@
-import React, { Component }  from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { SubmissionError } from 'redux-form'
 
 import Button from './Button';
 import LoginModal from './LoginModal';
@@ -23,19 +24,34 @@ export default class UserBar extends Component {
         });
     };
 
+    handleSubmitLoginForm = ({ username, password }) => {
+        const { onSignIn, users } = this.props;
+
+        return onSignIn(username, password, users)
+            .then(() => {
+                this.handleCloseModal();
+            })
+            .catch((err) => {
+                throw new SubmissionError({
+                    _error: err
+                });
+            });
+    };
+
     renderLogOutBtn() {
-        const { name: { first, last } } = this.props.user;
+        const { auth: { user }, onSignOut } = this.props;
 
         return (
             <div className="user-bar__username">
-                Hi, {first} {last}
+                Hi, {user.name.first} {user.name.last}
 
-                <Button modifiers={['dark']} onClick={this.handleLogOut}>
+                <Button modifiers={['dark']} onClick={onSignOut}>
                     Log Out
                 </Button>
             </div>
         );
     }
+
 
     renderLogInBtn() {
         return (
@@ -46,12 +62,12 @@ export default class UserBar extends Component {
     }
 
     render() {
-        const { user } = this.props;
+        const { auth: { signedIn } } = this.props;
 
         return (
             <div className="user-bar">
                 {
-                    user
+                    signedIn
                         ? this.renderLogOutBtn()
                         : this.renderLogInBtn()
 
@@ -61,7 +77,7 @@ export default class UserBar extends Component {
                     this.state.isModalOpen &&
                     <LoginModal
                       onClose={this.handleCloseModal}
-                      onSubmit={(values) => { console.log(values); }}
+                      onSubmit={this.handleSubmitLoginForm}
                     />
                 }
             </div>
@@ -70,10 +86,16 @@ export default class UserBar extends Component {
 }
 
 UserBar.propTypes = {
-    user: PropTypes.shape({
-        name: PropTypes.shape({
-            first: PropTypes.string,
-            last: PropTypes.string
-        })
-    })
+    auth: PropTypes.shape({
+        user: PropTypes.shape({
+            name: PropTypes.shape({
+                first: PropTypes.string,
+                last: PropTypes.string
+            })
+        }),
+        signedIn: PropTypes.bool
+    }),
+    users: PropTypes.arrayOf(PropTypes.shape({})),
+    onSignIn: PropTypes.func,
+    onSignOut: PropTypes.func,
 };

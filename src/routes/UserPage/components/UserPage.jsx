@@ -23,6 +23,8 @@ const UserPage = ({ usersMap, match: { params: { userId } }}) => {
                 <li className="user-page__info-item"><strong>{userName}</strong></li>
                 <li className="user-page__info-item"><strong>email:</strong> {user.email}</li>
                 <li className="user-page__info-item"><strong>phone:</strong> {user.phone}</li>
+                <li className="user-page__info-item"><strong>username:</strong> {user.login.username}</li>
+                <li className="user-page__info-item"><strong>password:</strong> {user.login.password}</li>
             </ul>
 
             <CommentList />
