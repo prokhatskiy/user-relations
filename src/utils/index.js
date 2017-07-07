@@ -1,1 +1,1 @@
-export http from './http';
+export usersApi from './usersApi';

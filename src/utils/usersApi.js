@@ -19,11 +19,9 @@ export default {
         return this.doMethod('delete', ...args);
     },
 
-    doMethod: function (method, url, params) {
+    doMethod: function (method, params) {
         return new Promise((resolve, reject) => {
-            const requestUrl = this.origin + url;
-
-            const request = superagent[method](requestUrl);
+            const request = superagent[method](this.origin);
 
             if (params) {
                 if (method === 'get') {
