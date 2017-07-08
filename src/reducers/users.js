@@ -1,5 +1,5 @@
-import md5 from 'md5';
 import { USERS_FETCHED } from '../actions/users';
+import { calcVector, calcUserId } from '../utils';
 
 const initialState = {
     items: {},
@@ -13,18 +13,13 @@ export default function reducer(state = initialState, action = {}) {
         const items = {};
 
         action.payload.items.forEach((item) => {
-            const computedId = md5(
-                item.id.name +
-                item.id.value +
-                item.name.first +
-                item.name.last +
-                new Date().getTime()
-            );
+            const computedId = calcUserId(item);
 
             itemsOrder.push(computedId);
             items[computedId] = {
                 ...item,
-                id: computedId
+                id: computedId,
+                vector: calcVector(item.name.first, item.name.last)
             };
         });
 

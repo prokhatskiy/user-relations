@@ -1,5 +1,5 @@
-import md5 from 'md5';
 import { ADD_COMMENT } from '../actions/comments';
+import { calcCommentId } from '../utils';
 
 const initialState = {
     items: {},
@@ -33,7 +33,7 @@ export default function reducer(state = initialState, action = {}) {
 
 function generateCommentEntry(authorId, targetId, body) {
     return {
-        id: md5(authorId + targetId + new Date().getTime()),
+        id: calcCommentId(authorId, targetId),
         authorId,
         targetId,
         body,

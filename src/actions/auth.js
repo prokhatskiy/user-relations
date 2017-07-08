@@ -1,4 +1,4 @@
-import syntheticAuth from '../utils/syntheticAuth';
+import { syntheticAuth } from '../utils';
 
 export const SIGN_IN = 'Auth/SIGN_IN';
 export const SIGN_OUT = 'Auth/SIGN_OUT';
