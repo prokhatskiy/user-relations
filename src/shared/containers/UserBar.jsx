@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 import UserBar from '../components/UserBar';
 import { signIn, signOut } from '../../actions/auth';
 
-const mapStateToProps = ({ users: { items, itemsOrder }, auth }) => ({
-    users: itemsOrder.map(itemId => items[itemId]),
+const mapStateToProps = ({ users: { items }, auth }) => ({
+    usersMap: items,
     auth
 });
 

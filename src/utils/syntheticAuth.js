@@ -1,11 +1,11 @@
-export default function logIn(username, password, users) {
-    return new Promise((resolve, reject) => {
-        const authorizedUser = users.find(user => (
+export default function login(username, password, usersmap) {
+    return new promise((resolve, reject) => {
+        const authorizeduser = object.keys(usersmap).map(id => usersmap[id]).find(user => (
             user.login.password === password && user.login.username === username
         ));
 
-        if (authorizedUser) {
-            resolve(authorizedUser);
+        if (authorizeduser) {
+            resolve(authorizeduser);
         } else {
             reject('login or password is incorrect');
         }

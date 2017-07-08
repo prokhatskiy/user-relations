@@ -18,8 +18,8 @@ const mapStateToProps = (
     }
 ) => ({
     user: items[userId],
-    comments: comments.recipients[userId] &&
-        comments.recipients[userId].map(commentId => comments.items[commentId]),
+    commentsMap: comments.items,
+    commentsOrder: comments.recipients[userId],
     auth
 });
 

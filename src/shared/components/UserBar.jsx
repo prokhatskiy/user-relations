@@ -25,9 +25,9 @@ export default class UserBar extends Component {
     };
 
     handleSubmitLoginForm = ({ username, password }) => {
-        const { onSignIn, users } = this.props;
+        const { onSignIn, usersMap } = this.props;
 
-        return onSignIn(username, password, users)
+        return onSignIn(username, password, usersMap)
             .then(() => {
                 this.handleCloseModal();
             })
@@ -95,7 +95,7 @@ UserBar.propTypes = {
         }),
         signedIn: PropTypes.bool
     }),
-    users: PropTypes.arrayOf(PropTypes.shape({})),
+    usersMap: PropTypes.shape({}),
     onSignIn: PropTypes.func,
     onSignOut: PropTypes.func,
 };

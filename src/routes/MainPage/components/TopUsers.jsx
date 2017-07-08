@@ -17,7 +17,7 @@ export default class TopUsers extends Component {
 
         this.state = {
             pairs: getTopUsers(props.items, PAIR_QTY)
-        }
+        };
     }
 
     componentWillReceiveProps(nextProps) {
@@ -36,7 +36,10 @@ export default class TopUsers extends Component {
                     pairs.map(pair => (
                         <li className="top-users__item" key={pair.first.id + pair.second.id}>
                             <Link to={`/${USER_ROUTE}/${pair.first.id}`} className="top-users__link">
-                                <img src={pair.first.picture.large} className="top-users__img" />
+                                <img
+                                  src={pair.first.picture.large}
+                                  className="top-users__img"
+                                />
                                 <span className="top-users__name">{`${pair.first.name.first} ${pair.first.name.last}`}</span>
                             </Link> -
                             <Link to={`/${USER_ROUTE}/${pair.second.id}`} className="top-users__link">
@@ -47,15 +50,12 @@ export default class TopUsers extends Component {
                     ))
                 }
             </ul>
-        )
+        );
     }
 }
 
 TopUsers.propTypes = {
-    items: PropTypes.arrayOf(PropTypes.shape({
-       first: USER_SHAPE,
-       second: USER_SHAPE
-    }))
+    items: PropTypes.arrayOf(USER_SHAPE)
 };
 
 TopUsers.defaultProps = {

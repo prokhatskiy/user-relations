@@ -3,11 +3,12 @@ import { fetchUsers } from '../../../actions/users';
 import MainPage from '../components/MainPage';
 
 const mapStateToProps = ({ users: { items, itemsOrder, page }}) => ({
-    users: itemsOrder.map(itemId => items[itemId]),
+    usersMap: items,
+    usersOrder: itemsOrder,
     initialPage: page
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
     fetchUsers(...args) {
         dispatch(fetchUsers(...args));
     }

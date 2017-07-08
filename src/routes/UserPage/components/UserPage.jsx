@@ -12,7 +12,9 @@ export default class UserPage extends Component {
     };
 
     render() {
-        const { user, auth, comments } = this.props;
+        const { user, auth, commentsMap, commentsOrder } = this.props;
+
+        const comments = commentsOrder.map(id => commentsMap[id]);
 
         if (!user) {
             return (
@@ -20,7 +22,7 @@ export default class UserPage extends Component {
             );
         }
 
-        const userName = `${user.name.first} ${user.name.last}`
+        const userName = `${user.name.first} ${user.name.last}`;
 
         return (
             <section className="user-page">
@@ -62,5 +64,10 @@ UserPage.propTypes = {
         })
     }),
     addComment: PropTypes.func,
-    comments: PropTypes.arrayOf(PropTypes.shape({}))
+    commentsOrder: PropTypes.arrayOf(PropTypes.string),
+    commentsMap: PropTypes.shape({}),
+};
+
+UserPage.defaultProps = {
+    commentsOrder: []
 };

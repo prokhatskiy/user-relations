@@ -1,19 +1,39 @@
 export default function getTopUsers(userList = [], qty) {
-    // TBD
+    const result = [];
+    let iterator = 0;
 
-    const results = [];
-    const totalQty = userList.length;
+    function calcDistance(start, stop) {
+        for (let i = start + 1; i < stop; i++) {
+            const pair = {
+                first: userList[i],
+                second: userList[start],
+                dist: Math.abs(userList[i].vector.x - userList[start].vector.x) +
+                        Math.abs(userList[i].vector.y - userList[start].vector.y)
+            };
 
-    if (totalQty === 0) {
-        return results;
+            if (result.length < qty) {
+                result.push(pair);
+            } else if (result[qty - 1].dist === 0) {
+                return;
+            } else if (result[qty - 1].dist > pair.dist) {
+                result.pop();
+                result.push(pair);
+            }
+
+            result.sort((curPair, nextPair) => curPair.dist - nextPair.dist);
+            iterator++;
+        }
+
+        const nextStart = start + 1;
+
+        if (nextStart < stop) {
+            calcDistance(nextStart, stop);
+        }
     }
 
-    for (let n = 1; n < qty + 1; n++) {
-        results.push({
-            first: userList[totalQty - 1 - (n * 2)],
-            second: userList[totalQty - 2 - (n * 2)]
-        });
-    }
+    calcDistance(0, userList.length);
 
-    return results;
+    console.log(iterator);
+
+    return result;
 }
