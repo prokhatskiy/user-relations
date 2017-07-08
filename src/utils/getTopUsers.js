@@ -1,9 +1,8 @@
 export default function getTopUsers(userList = [], qty) {
     const result = [];
-    let iterator = 0;
 
-    function calcDistance(start, stop) {
-        for (let i = start + 1; i < stop; i++) {
+    function calcDistance(start) {
+        for (let i = start - 1; i >= 0; i--) {
             const pair = {
                 first: userList[i],
                 second: userList[start],
@@ -21,19 +20,16 @@ export default function getTopUsers(userList = [], qty) {
             }
 
             result.sort((curPair, nextPair) => curPair.dist - nextPair.dist);
-            iterator++;
         }
 
-        const nextStart = start + 1;
+        const nextStart = start - 1;
 
-        if (nextStart < stop) {
-            calcDistance(nextStart, stop);
+        if (nextStart >= 0) {
+            calcDistance(nextStart);
         }
     }
 
-    calcDistance(0, userList.length);
-
-    console.log(iterator);
+    calcDistance(userList.length - 1);
 
     return result;
 }
