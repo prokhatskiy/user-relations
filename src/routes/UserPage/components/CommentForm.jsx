@@ -16,7 +16,7 @@ class CommentForm extends Component {
 
     renderForm() {
         return (
-            <form onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
+            <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
                 <label htmlFor="comment-form">
                     <Field
                       name="comment"
@@ -38,6 +38,12 @@ class CommentForm extends Component {
             </form>
         );
     }
+
+    handleSubmit = (...args) => {
+        this.props.reset();
+        this.props.onSubmit(...args);
+    };
+
     render() {
         const { showForm } = this.props;
 
@@ -56,6 +62,7 @@ class CommentForm extends Component {
 CommentForm.propTypes = {
     onSubmit: PropTypes.func,
     handleSubmit: PropTypes.func,
+    reset: PropTypes.func,
     showForm: PropTypes.bool
 };
 
