@@ -5,11 +5,15 @@ import './CommentList.styl';
 const CommentList = ({ items }) => (
     <ul className="comments">
         {
+            items.length > 0 &&
+            <li className="comments__title">
+                Comments:
+            </li>
+        }
+        {
             items.map(comment => (
                 <li className="comments__item" key={comment.id}>
-                    <div className="comments__item-body">
-                        {comment.body}
-                    </div>
+                    {comment.body}
                 </li>
             ))
         }

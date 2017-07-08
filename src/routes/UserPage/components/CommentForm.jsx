@@ -22,7 +22,7 @@ class CommentForm extends Component {
                       name="comment"
                       component={Input}
                       placeholder="Leave your comment here"
-                      className="comment-form__message"
+                      className="comment-form__field"
                       textarea
                       required
                     />

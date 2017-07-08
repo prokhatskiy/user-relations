@@ -33,11 +33,12 @@ export default class UserList extends Component{
             <InfiniteScroll
               pageStart={initialPage}
               loadMore={loadMore}
+              loader={<div className="user-list-loader">Loading...</div>}
               hasMore
             >
                 <ul className="user-list">
                     {
-                        items.map(item => {
+                        items.map((item) => {
                             const { id, picture, name } = item;
                             const userName = `${name.first} ${name.last}`;
 

@@ -6,6 +6,8 @@ import Message from '../../../shared/components/Message';
 import CommentList from './CommentList';
 import CommentForm from './CommentForm';
 
+import './UserPage.styl';
+
 export default class UserPage extends Component {
     handleCommentSubmit = ({ comment }) => {
         this.props.addComment(this.props.auth.user.id, this.props.user.id, comment);

@@ -32,6 +32,9 @@ export default class TopUsers extends Component {
 
         return (
             <ul className="top-users">
+                <li className="top-users__title">
+                    Most Likely Couples:
+                </li>
                 {
                     pairs.map(pair => (
                         <li className="top-users__item" key={pair.first.id + pair.second.id}>
@@ -41,7 +44,7 @@ export default class TopUsers extends Component {
                                   className="top-users__img"
                                 />
                                 <span className="top-users__name">{`${pair.first.name.first} ${pair.first.name.last}`}</span>
-                            </Link> -
+                            </Link>
                             <Link to={`/${USER_ROUTE}/${pair.second.id}`} className="top-users__link">
                                 <img src={pair.second.picture.large} className="top-users__img" />
                                 <span className="top-users__name">{`${pair.second.name.first} ${pair.second.name.last}`}</span>
