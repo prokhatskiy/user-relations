@@ -4,7 +4,7 @@ export default {
     origin: 'https://randomuser.me/api/',
 
     defaultParams: {
-        inc: 'id,name,email,picture,login,phone'
+        inc: 'id,name,email,picture,login,phone,gender'
     },
 
     get: function get(...args) {

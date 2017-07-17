@@ -37,17 +37,17 @@ export default class TopUsers extends Component {
                 </li>
                 {
                     pairs.map(pair => (
-                        <li className="top-users__item" key={pair.first.id + pair.second.id}>
-                            <Link to={`/${USER_ROUTE}/${pair.first.id}`} className="top-users__link">
+                        <li className="top-users__item" key={pair.male.id + pair.female.id}>
+                            <Link to={`/${USER_ROUTE}/${pair.male.id}`} className="top-users__link">
                                 <img
-                                  src={pair.first.picture.large}
+                                  src={pair.male.picture.large}
                                   className="top-users__img"
                                 />
-                                <span className="top-users__name">{`${pair.first.name.first} ${pair.first.name.last}`}</span>
+                                <span className="top-users__name">{`${pair.male.name.first} ${pair.male.name.last}`}</span>
                             </Link>
-                            <Link to={`/${USER_ROUTE}/${pair.second.id}`} className="top-users__link">
-                                <img src={pair.second.picture.large} className="top-users__img" />
-                                <span className="top-users__name">{`${pair.second.name.first} ${pair.second.name.last}`}</span>
+                            <Link to={`/${USER_ROUTE}/${pair.female.id}`} className="top-users__link">
+                                <img src={pair.female.picture.large} className="top-users__img" />
+                                <span className="top-users__name">{`${pair.female.name.first} ${pair.female.name.last}`}</span>
                             </Link>
                         </li>
                     ))
